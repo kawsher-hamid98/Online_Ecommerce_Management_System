@@ -22,19 +22,38 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping(value = "/customers/{customer_id}/orders")
-    public ResponseEntity<List<OrderDetails>> getAllOrder(@PathVariable long customer_id) {
-        List<OrderDetails> orderDetailsList = orderService.getAllOrder(customer_id);
-        if (orderDetailsList != null) {
-            return new ResponseEntity<>(orderDetailsList, HttpStatus.FOUND);
-        } else {
-            throw new ResourceNotFoundException("Order has not placed yet!");
-        }
+    @GetMapping("/")
+    public String getHome() {
+        return ("<h1>home</h1>");
     }
 
-    @PostMapping(value = "/customers/{customer_id}/order")
-    public ResponseEntity<OrderDetails> placeOrder(@PathVariable long customer_id) throws Exception {
-        OrderDetails orderDetails = orderService.placeOrder(customer_id);
-        return new ResponseEntity<>(orderDetails, HttpStatus.CREATED);
+    @GetMapping("/user")
+    public String userAdmin() {
+        return ("<h1>user</h1>");
     }
+
+    @GetMapping("/admin")
+    public String register() {
+        return ("<h1>admin</h1>");
+    }
+
+
+
+
+
+//    @GetMapping(value = "/customers/{customer_id}/orders")
+//    public ResponseEntity<List<OrderDetails>> getAllOrder(@PathVariable long customer_id) {
+//        List<OrderDetails> orderDetailsList = orderService.getAllOrder(customer_id);
+//        if (orderDetailsList != null) {
+//            return new ResponseEntity<>(orderDetailsList, HttpStatus.FOUND);
+//        } else {
+//            throw new ResourceNotFoundException("Order has not placed yet!");
+//        }
+//    }
+//
+//    @PostMapping(value = "/customers/{customer_id}/order")
+//    public ResponseEntity<OrderDetails> placeOrder(@PathVariable long customer_id) throws Exception {
+//        OrderDetails orderDetails = orderService.placeOrder(customer_id);
+//        return new ResponseEntity<>(orderDetails, HttpStatus.CREATED);
+//    }
 }
